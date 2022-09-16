@@ -10,7 +10,7 @@
     "compile-contracts": "env-cmd node ethereum/compile.js",
     "deploy-contracts": "env-cmd node ethereum/deploy.js"
   },
-  "author": "kaje94",
+  "author": "Ajeeth",
   "license": "ISC",
   "dependencies": {
     "env-cmd": "^10.1.0",
