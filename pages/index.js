@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useQuery, dehydrate, QueryClient } from "react-query";
 import factory from "../ethereum/factory";
 import { Card, Button } from "semantic-ui-react";
 import Layout from "../components/Layout";
 import Link from "next/link";
+import Campaign from "../ethereum/campaign";
 
 export const getDeployedCampaigns = factory.methods.getDeployedCampaigns().call;
 const campaignListKey = "campaign-list";
 
 const CampaignIndex = () => {
+  // ===============================================================
   const { data: campaigns = [] } = useQuery(
     campaignListKey,
     getDeployedCampaigns,
@@ -17,14 +19,19 @@ const CampaignIndex = () => {
         data.map((address) => ({
           header: address,
           description: (
-            <Link href={`/campaigns/${address}`} key={address}>
-              <a>View Campaign</a>
-            </Link>
+            <div>
+              <Link href={`/campaigns/${address}`} key={address}>
+                {/* <p>{address[5]}</p> */}
+                <a>View Campaign</a>
+              </Link>
+              {/* <p>{summary}</p> */}
+            </div>
           ),
           fluid: true,
         })),
     }
   );
+  console.log("sup", campaigns);
 
   return (
     <Layout>

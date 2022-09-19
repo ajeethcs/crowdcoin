@@ -19,6 +19,7 @@ const campaignSummaryKey = "campaign-summary";
 
 const CampaignShow = () => {
   const router = useRouter();
+
   const { data: summary = [] } = useQuery(
     [campaignSummaryKey, router.query.address],
     () => getCampaignSummary(router.query.address),
@@ -36,6 +37,18 @@ const CampaignShow = () => {
         };
         // console.log(data);
         return [
+          {
+            header: summaryData?.name,
+            meta: "Name of the campaign",
+            description: "The campaign title",
+            style: { overflowWrap: "break-word" },
+          },
+          {
+            header: summaryData?.description,
+            meta: "Description",
+            description: "Short summary about the campaign",
+            style: { overflowWrap: "break-word" },
+          },
           {
             header: summaryData?.manager,
             meta: "Address of Manager",
@@ -66,19 +79,6 @@ const CampaignShow = () => {
             meta: "Campaign Balance (ether)",
             description:
               "The balance is how much money this campaign has left to spend",
-          },
-
-          {
-            header: summaryData?.name,
-            meta: "Name of the campaign",
-            description: "The campaign title",
-            style: { overflowWrap: "break-word" },
-          },
-          {
-            header: summaryData?.description,
-            meta: "Description",
-            description: "Short summary about the campaign",
-            style: { overflowWrap: "break-word" },
           },
         ];
       },
