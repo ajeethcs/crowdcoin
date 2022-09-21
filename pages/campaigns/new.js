@@ -8,13 +8,17 @@ import { useRouter } from "next/router";
 
 const CampaignNew = () => {
   const [minContribution, setMinContribution] = useState("");
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
   const router = useRouter();
 
   const { mutate, isLoading, error, isError } = useMutation(
     async (value) => {
       router.prefetch("/");
       const accounts = await web3.eth.getAccounts();
-      await factory.methods.createCampaign(value).send({ from: accounts[0] });
+      await factory.methods
+        .createCampaign(minContribution, name, description)
+        .send({ from: accounts[0] });
     },
     {
       onSuccess: () => router.push("/"),
@@ -24,9 +28,10 @@ const CampaignNew = () => {
   const onSubmit = useCallback(
     (event) => {
       event.preventDefault();
-      mutate(minContribution);
+      mutate(event);
+      // console.log(event);
     },
-    [minContribution]
+    [minContribution, name, description]
   );
 
   return (
@@ -48,6 +53,29 @@ const CampaignNew = () => {
             disabled={isLoading}
           />
         </Form.Field>
+        {/*  */}
+        <Form.Field>
+          <label>Campaign Name</label>
+          <Input
+            value={name}
+            onChange={({ target: { value } }) => setName(value)}
+            // label="wei"
+            labelPosition="right"
+            disabled={isLoading}
+          />
+        </Form.Field>
+        {/*  */}
+        <Form.Field>
+          <label>Campaign Description</label>
+          <Input
+            value={description}
+            onChange={({ target: { value } }) => setDescription(value)}
+            label=""
+            labelPosition="right"
+            disabled={isLoading}
+          />
+        </Form.Field>
+
         <Message error header="Oops!" content={error?.message} />
         <Button loading={isLoading} primary>
           Create

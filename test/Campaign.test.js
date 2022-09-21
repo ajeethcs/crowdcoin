@@ -13,17 +13,18 @@ let campaign;
 
 beforeEach(async () => {
   accounts = await web3.eth.getAccounts();
+  // console.log("account-->", accounts);
 
   factory = await new web3.eth.Contract(JSON.parse(compiledFactory.interface))
     .deploy({ data: compiledFactory.bytecode })
     .send({
       from: accounts[0],
-      gas: "1000000",
+      gas: "5000000",
     });
 
-  await factory.methods.createCampaign("100").send({
+  await factory.methods.createCampaign("100", "test", "hello").send({
     from: accounts[0],
-    gas: "1000000",
+    gas: "5000000",
   });
 
   const addresses = await factory.methods.getDeployedCampaigns().call();
@@ -46,7 +47,7 @@ describe("Campaigns", () => {
     assert.equal(manager, accounts[0]);
   });
 
-  it("allows people to contribute monet and marks them as approver", async () => {
+  it("allows people to contribute money and marks them as approver", async () => {
     await campaign.methods.contribute().send({
       from: accounts[1],
       value: "200",

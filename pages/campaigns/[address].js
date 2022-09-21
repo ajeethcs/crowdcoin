@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Layout from "../../components/Layout";
 import { getDeployedCampaigns } from "../index";
 import { useQuery, dehydrate, QueryClient } from "react-query";
@@ -12,12 +12,14 @@ import Link from "next/link";
 const getCampaignSummary = async (campaignAddress) => {
   const campaign = Campaign(campaignAddress);
   const summary = await campaign.methods.getSummary().call();
+  // console.log(summary);
   return JSON.stringify(summary);
 };
 const campaignSummaryKey = "campaign-summary";
 
 const CampaignShow = () => {
   const router = useRouter();
+
   const { data: summary = [] } = useQuery(
     [campaignSummaryKey, router.query.address],
     () => getCampaignSummary(router.query.address),
@@ -30,8 +32,23 @@ const CampaignShow = () => {
           requestsCount: parsedSummary[2],
           approversCount: parsedSummary[3],
           manager: parsedSummary[4],
+          name: parsedSummary[5],
+          description: parsedSummary[6],
         };
+        // console.log(data);
         return [
+          {
+            header: summaryData?.name,
+            meta: "Name of the campaign",
+            description: "The campaign title",
+            style: { overflowWrap: "break-word" },
+          },
+          {
+            header: summaryData?.description,
+            meta: "Description",
+            description: "Short summary about the campaign",
+            style: { overflowWrap: "break-word" },
+          },
           {
             header: summaryData?.manager,
             meta: "Address of Manager",
