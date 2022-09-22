@@ -4,12 +4,13 @@ import factory from "../ethereum/factory";
 import { Card, Button } from "semantic-ui-react";
 import Layout from "../components/Layout";
 import Link from "next/link";
-import Campaign from "../ethereum/campaign";
+import { Icon } from "semantic-ui-react";
 
 export const getDeployedCampaigns = factory.methods.getDeployedCampaigns().call;
 const campaignListKey = "campaign-list";
 
 const CampaignIndex = () => {
+  const [isLoading, setIsLoading] = useState(false);
   // ===============================================================
   const { data: campaigns = [] } = useQuery(
     campaignListKey,
@@ -33,20 +34,45 @@ const CampaignIndex = () => {
   );
   console.log("sup", campaigns);
 
+  const changeOnMouseOver = () => {
+    setIsLoading(true);
+  };
+  const changeOnMouseLeave = () => {
+    setIsLoading(false);
+  };
+
   return (
-    <Layout>
-      <Link href="/campaigns/new">
-        <a>
-          <Button
-            floated="right"
-            content="Create Campaign"
-            icon="add circle"
-            primary
-          />
-        </a>
-      </Link>
-      <Card.Group items={campaigns} />
-    </Layout>
+    <div>
+      <div className="titlebar">
+        <h1
+          className="title"
+          onMouseEnter={changeOnMouseOver}
+          onMouseLeave={changeOnMouseLeave}
+        >
+          Crowdcoin
+        </h1>
+        <div
+          className="logo"
+          onMouseEnter={changeOnMouseOver}
+          onMouseLeave={changeOnMouseLeave}
+        >
+          <Icon name="bitcoin" size="huge" color="yellow" loading={isLoading} />
+        </div>
+      </div>
+      <Layout>
+        {/* <Link href="/campaigns/new">
+          <a>
+            <Button
+              floated="right"
+              content="Create Campaign"
+              icon="add circle"
+              style={{ backgroundColor: "#0ea5e9", color: "white  " }}
+            />
+          </a>
+        </Link> */}
+        <Card.Group items={campaigns} />
+      </Layout>
+    </div>
   );
 };
 

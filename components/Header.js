@@ -1,21 +1,32 @@
 import React from "react";
-import { Menu } from "semantic-ui-react";
+import { Button, Menu } from "semantic-ui-react";
 import Link from "next/link";
 
 const Header = () => (
-  <Menu style={{ marginTop: "10px" }}>
-    <Link href="/">
-      <a className="item">CrowdCoin</a>
-    </Link>
-    <Menu.Menu position="right">
+  <div>
+    <Menu style={{ marginTop: "10px" }}>
       <Link href="/">
-        <a className="item">Campaigns</a>
+        <a className="item">CrowdCoin</a>
       </Link>
-      <Link href="/campaigns/new">
-        <a className="item">+</a>
-      </Link>
-    </Menu.Menu>
-  </Menu>
+      <Menu.Menu position="right">
+        <Link href="/campaigns/new">
+          <a>
+            <Button
+              floated="right"
+              content="Create Campaign"
+              icon="add circle"
+              style={{
+                backgroundColor: "#0ea5e9",
+                color: "white",
+                height: "100%",
+                margin: 0,
+              }}
+            />
+          </a>
+        </Link>
+      </Menu.Menu>
+    </Menu>
+  </div>
 );
 
 export default Header;
