@@ -3,7 +3,7 @@ import { Button, Menu } from "semantic-ui-react";
 import Link from "next/link";
 
 const Header = () => (
-  <div>
+  <div className="nav">
     <Menu style={{ marginTop: "10px" }}>
       <Link href="/">
         <a className="item">CrowdCoin</a>
@@ -19,7 +19,7 @@ const Header = () => (
                 backgroundColor: "#0ea5e9",
                 color: "white",
                 height: "100%",
-                margin: 0,
+                margin: "0",
               }}
             />
           </a>

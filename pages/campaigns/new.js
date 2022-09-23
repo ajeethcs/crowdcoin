@@ -29,7 +29,6 @@ const CampaignNew = () => {
     (event) => {
       event.preventDefault();
       mutate(event);
-      // console.log(event);
     },
     [minContribution, name, description]
   );
@@ -41,46 +40,50 @@ const CampaignNew = () => {
         <Breadcrumb.Divider />
         <Breadcrumb.Section active>New</Breadcrumb.Section>
       </Breadcrumb>
-      <h3>Create a Campaign</h3>
-      <Form onSubmit={onSubmit} error={isError}>
-        <Form.Field>
-          <label>Minimum contribution</label>
-          <Input
-            value={minContribution}
-            onChange={({ target: { value } }) => setMinContribution(value)}
-            label="wei"
-            labelPosition="right"
-            disabled={isLoading}
-          />
-        </Form.Field>
-        {/*  */}
-        <Form.Field>
-          <label>Campaign Name</label>
-          <Input
-            value={name}
-            onChange={({ target: { value } }) => setName(value)}
-            // label="wei"
-            labelPosition="right"
-            disabled={isLoading}
-          />
-        </Form.Field>
-        {/*  */}
-        <Form.Field>
-          <label>Campaign Description</label>
-          <Input
-            value={description}
-            onChange={({ target: { value } }) => setDescription(value)}
-            label=""
-            labelPosition="right"
-            disabled={isLoading}
-          />
-        </Form.Field>
+      <div>
+        <h3 className="newHeading">Create a Campaign</h3>
+        <div className="newContainer">
+          <Form onSubmit={onSubmit} error={isError}>
+            <Form.Field>
+              <label style={{ color: "white" }}>Minimum contribution</label>
+              <Input
+                value={minContribution}
+                onChange={({ target: { value } }) => setMinContribution(value)}
+                label="wei"
+                labelPosition="right"
+                disabled={isLoading}
+              />
+            </Form.Field>
+            {/*  */}
+            <Form.Field>
+              <label style={{ color: "white" }}>Campaign Name</label>
+              <Input
+                value={name}
+                onChange={({ target: { value } }) => setName(value)}
+                // label="wei"
+                labelPosition="right"
+                disabled={isLoading}
+              />
+            </Form.Field>
+            {/*  */}
+            <Form.Field>
+              <label style={{ color: "white" }}>Campaign Description</label>
+              <Input
+                value={description}
+                onChange={({ target: { value } }) => setDescription(value)}
+                label=""
+                labelPosition="right"
+                disabled={isLoading}
+              />
+            </Form.Field>
 
-        <Message error header="Oops!" content={error?.message} />
-        <Button loading={isLoading} primary>
-          Create
-        </Button>
-      </Form>
+            <Message error header="Oops!" content={error?.message} />
+            <Button loading={isLoading} primary>
+              Create
+            </Button>
+          </Form>
+        </div>
+      </div>
     </Layout>
   );
 };

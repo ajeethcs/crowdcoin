@@ -5,12 +5,15 @@ import { Card, Button } from "semantic-ui-react";
 import Layout from "../components/Layout";
 import Link from "next/link";
 import { Icon } from "semantic-ui-react";
+// import Campaign from "../../ethereum/campaign";
+import Campaign from "../ethereum/campaign";
 
 export const getDeployedCampaigns = factory.methods.getDeployedCampaigns().call;
 const campaignListKey = "campaign-list";
 
 const CampaignIndex = () => {
   const [isLoading, setIsLoading] = useState(false);
+  // const [summary, setSummary] = useState();
   // ===============================================================
   const { data: campaigns = [] } = useQuery(
     campaignListKey,
@@ -32,7 +35,11 @@ const CampaignIndex = () => {
         })),
     }
   );
-  console.log("sup", campaigns);
+  // console.log("sup", campaigns);
+  let campaignAdresses = campaigns.map((obj) => {
+    return obj.header;
+  });
+  console.log(campaignAdresses);
 
   const changeOnMouseOver = () => {
     setIsLoading(true);
@@ -40,6 +47,10 @@ const CampaignIndex = () => {
   const changeOnMouseLeave = () => {
     setIsLoading(false);
   };
+
+  // *********************************
+
+  // *********************************************
 
   return (
     <div>
@@ -59,19 +70,11 @@ const CampaignIndex = () => {
           <Icon name="bitcoin" size="huge" color="yellow" loading={isLoading} />
         </div>
       </div>
-      <Layout>
-        {/* <Link href="/campaigns/new">
-          <a>
-            <Button
-              floated="right"
-              content="Create Campaign"
-              icon="add circle"
-              style={{ backgroundColor: "#0ea5e9", color: "white  " }}
-            />
-          </a>
-        </Link> */}
-        <Card.Group items={campaigns} />
-      </Layout>
+      <div className="campaignList">
+        <Layout>
+          <Card.Group items={campaigns} />
+        </Layout>
+      </div>
     </div>
   );
 };
