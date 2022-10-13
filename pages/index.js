@@ -54,22 +54,29 @@ const CampaignIndex = () => {
 
   return (
     <div>
-      <div className="titlebar">
-        <h1
-          className="title"
-          onMouseEnter={changeOnMouseOver}
-          onMouseLeave={changeOnMouseLeave}
-        >
-          Crowdcoin
-        </h1>
-        <div
-          className="logo"
-          onMouseEnter={changeOnMouseOver}
-          onMouseLeave={changeOnMouseLeave}
-        >
-          <Icon name="bitcoin" size="huge" color="yellow" loading={isLoading} />
+      <Link href="/">
+        <div className="titlebar">
+          <h1
+            className="title"
+            onMouseEnter={changeOnMouseOver}
+            onMouseLeave={changeOnMouseLeave}
+          >
+            Crowdcoin
+          </h1>
+          <div
+            className="logo"
+            onMouseEnter={changeOnMouseOver}
+            onMouseLeave={changeOnMouseLeave}
+          >
+            <Icon
+              name="bitcoin"
+              size="huge"
+              color="yellow"
+              loading={isLoading}
+            />
+          </div>
         </div>
-      </div>
+      </Link>
       <div className="campaignList">
         <Layout>
           <Card.Group items={campaigns} />

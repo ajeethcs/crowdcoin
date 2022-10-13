@@ -71,14 +71,13 @@ const CampaignNew = () => {
               <Input
                 value={description}
                 onChange={({ target: { value } }) => setDescription(value)}
-                label=""
                 labelPosition="right"
                 disabled={isLoading}
               />
             </Form.Field>
 
             <Message error header="Oops!" content={error?.message} />
-            <Button loading={isLoading} primary>
+            <Button style={{ marginLeft: "42%" }} loading={isLoading} primary>
               Create
             </Button>
           </Form>

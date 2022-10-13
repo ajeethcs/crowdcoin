@@ -4,9 +4,7 @@ const compiledFactory = require("./build/CampaignFactory.json");
 
 const provider = new HDWalletProvider(
   process.env.WALLET_MNEMONIC,
-  // remember to change this to your own phrase by providing in in the .env file!
   process.env.INFURA_ENDPOINT
-  // remember to change this to your own endpoint by providing in in the .env file!
 );
 const web3 = new Web3(provider);
 
@@ -20,7 +18,7 @@ const deploy = async () => {
     JSON.parse(compiledFactory.interface)
   )
     .deploy({ data: compiledFactory.bytecode })
-    .send({ gas: "9000000", gasPrice: "5000000000", from: accounts[0] });
+    .send({ gas: "6721975", gasPrice: "20000000000", from: accounts[0] });
 
   console.log("Contract deployed to", result.options.address);
 };

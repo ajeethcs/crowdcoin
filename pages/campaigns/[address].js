@@ -96,7 +96,9 @@ const CampaignShow = () => {
       <Grid>
         <Grid.Row>
           <Grid.Column width={10}>
-            <Card.Group items={summary} />
+            <div className="details">
+              <Card.Group items={summary} />
+            </div>
           </Grid.Column>
           <Grid.Column width={6}>
             <ContributeForm campaignAddress={router.query.address} />
@@ -106,7 +108,7 @@ const CampaignShow = () => {
         <Grid.Row>
           <Grid.Column>
             <Link href={`/campaigns/${router.query.address}/requests`}>
-              <a>
+              <a className="viewRequestsButton">
                 <Button primary>View Requests</Button>
               </a>
             </Link>

@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from "react";
 import { Button, Form, Input, Message } from "semantic-ui-react";
 import { useMutation } from "react-query";
+// import Campaign from "../ethereum/campaign";
 import Campaign from "../ethereum/campaign";
 import web3 from "../ethereum/web3";
 import { useRouter } from "next/router";
@@ -32,12 +33,15 @@ const ContributeForm = ({ campaignAddress }) => {
   return (
     <Form onSubmit={onSubmit} error={isError}>
       <Form.Field>
-        <label>Amount to Contribute</label>
+        <label style={{ color: "white" }}>Amount to Contribute</label>
         <Input
           label="Ether"
+          placeholder="Enter value in ether"
           labelPosition="right"
           value={contributionValue}
-          onChange={({ target: { value } }) => setContributionValue(value)}
+          onChange={({ target: { value } }) => {
+            setContributionValue(value);
+          }}
         />
       </Form.Field>
       <Message error header="Oops!" content={error?.message} />

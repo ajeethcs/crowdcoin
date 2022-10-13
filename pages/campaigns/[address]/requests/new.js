@@ -54,33 +54,36 @@ const NewRequest = () => {
       </Breadcrumb>
       <h3>Create a Request</h3>
       <Form onSubmit={onSubmit} error={isError}>
-        <Form.Field>
-          <label>Description</label>
-          <Input
-            value={description}
-            onChange={({ target: { value } }) => setDescription(value)}
-          />
-        </Form.Field>
+        <div className="details">
+          <Form.Field>
+            <label style={{ color: "white" }}>Description</label>
+            <Input
+              value={description}
+              onChange={({ target: { value } }) => setDescription(value)}
+            />
+          </Form.Field>
 
-        <Form.Field>
-          <label>Value in Ether</label>
-          <Input
-            label="Ether"
-            labelPosition="right"
-            value={value}
-            onChange={({ target: { value } }) => setValue(value)}
-          />
-        </Form.Field>
+          <Form.Field>
+            <label style={{ color: "white" }}>Value in Ether</label>
+            <Input
+              label="Ether"
+              labelPosition="right"
+              placeholder="enter value in ethers"
+              value={value}
+              onChange={({ target: { value } }) => setValue(value)}
+            />
+          </Form.Field>
 
-        <Form.Field>
-          <label>Recipient</label>
-          <Input
-            value={recipient}
-            onChange={({ target: { value } }) => setRecipient(value)}
-          />
-        </Form.Field>
+          <Form.Field>
+            <label style={{ color: "white" }}>Recipient</label>
+            <Input
+              value={recipient}
+              onChange={({ target: { value } }) => setRecipient(value)}
+            />
+          </Form.Field>
 
-        <Message error header="Oops!" content={error?.message} />
+          <Message error header="Oops!" content={error?.message} />
+        </div>
 
         <Button loading={isLoading} primary>
           Create
