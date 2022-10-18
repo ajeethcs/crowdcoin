@@ -1,15 +1,22 @@
 pragma solidity ^0.4.17;
+pragma experimental ABIEncoderV2;
 
 contract CampaignFactory {
     address[] public deployedCampaigns;
+    string[] campaignNames;
 
     function createCampaign(uint256 minimum,string name,string description) public {
-        address newCampaign = new Campaign(minimum, msg.sender,name,description);
-        deployedCampaigns.push(newCampaign);
+        address newCampaignAddress = new Campaign(minimum, msg.sender,name,description);
+        deployedCampaigns.push(newCampaignAddress);
+        campaignNames.push(name);
     }
 
     function getDeployedCampaigns() public view returns (address[]) {
         return deployedCampaigns;
+    }
+
+    function getCampaignNames() public view returns(string[]){
+        return campaignNames;
     }
 }
 

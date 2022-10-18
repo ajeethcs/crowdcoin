@@ -7,24 +7,34 @@ import Link from "next/link";
 import { Icon } from "semantic-ui-react";
 // import Campaign from "../../ethereum/campaign";
 import Campaign from "../ethereum/campaign";
+import CampaignList from "../components/CampaignList";
 
 export const getDeployedCampaigns = factory.methods.getDeployedCampaigns().call;
+export const getCampaignNames = factory.methods.getCampaignNames().call;
 const campaignListKey = "campaign-list";
 
 const CampaignIndex = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const [names, setNames] = useState([]);
   // const [summary, setSummary] = useState();
+
+  useEffect(async () => {
+    setNames(await getCampaignNames());
+    console.log("runn");
+  }, []);
+  console.log("names:", names);
+
   // ===============================================================
   const { data: campaigns = [] } = useQuery(
     campaignListKey,
     getDeployedCampaigns,
     {
       select: (data = []) =>
-        data.map((address) => ({
-          header: address,
+        data?.map((campaign, index) => ({
+          header: campaign,
           description: (
             <div>
-              <Link href={`/campaigns/${address}`} key={address}>
+              <Link href={`/campaigns/${campaign}`} key={campaign}>
                 {/* <p>{address[5]}</p> */}
                 <a>View Campaign</a>
               </Link>
@@ -77,11 +87,16 @@ const CampaignIndex = () => {
           </div>
         </div>
       </Link>
-      <div className="campaignList">
-        <Layout>
-          <Card.Group items={campaigns} />
-        </Layout>
-      </div>
+      <Layout>
+        <div className="campaignList">
+          {names.map((campaignName, index) => (
+            <CampaignList
+              name={campaignName}
+              address={campaignAdresses[index]}
+            />
+          ))}
+        </div>
+      </Layout>
     </div>
   );
 };

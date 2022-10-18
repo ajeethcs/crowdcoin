@@ -3,8 +3,8 @@
 .next
 
 # dotenv environment variables file
-.env
-.env.build
+# .env
+# .env.build
 
 # Dependency directories
 node_modules
