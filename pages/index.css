@@ -3,9 +3,7 @@
 }
 
 .backgroundImage {
-    /* background-color: green; */
     background: radial-gradient(circle at -8.9% 51.2%, rgb(255, 124, 0) 0%, rgb(255, 124, 0) 15.9%, rgb(255, 163, 77) 15.9%, rgb(255, 163, 77) 24.4%, rgb(19, 30, 37) 24.5%, rgb(19, 30, 37) 66%);
-    /* filter: blur(4px); */
     position: absolute;
     width: 100%;
     height: 100vh;
@@ -117,7 +115,7 @@
     height: 15vh;
     padding: 10px;
     cursor: pointer;
-    transition: all .2s ease-in-out;
+    transition: all 0.1s ease-in-out;
 }
 
 .cardBody:hover {

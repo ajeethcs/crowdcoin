@@ -71,7 +71,7 @@ const CampaignIndex = () => {
             onMouseEnter={changeOnMouseOver}
             onMouseLeave={changeOnMouseLeave}
           >
-            Crowdcoin
+            CrowdCoin
           </h1>
           <div
             className="logo"
