@@ -5,9 +5,7 @@ import Link from "next/link";
 const Header = () => (
   <div className="nav">
     <Menu style={{ marginTop: "10px" }}>
-      <Link href="/">
-        <a className="item">CrowdCoin</a>
-      </Link>
+      <div className="item">CrowdCoin</div>
       <Menu.Menu position="right">
         <Link href="/campaigns/new">
           <a>

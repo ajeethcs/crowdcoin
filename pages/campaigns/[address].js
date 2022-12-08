@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Layout from "../../components/Layout";
 import { getDeployedCampaigns } from "../index";
 import { useQuery, dehydrate, QueryClient } from "react-query";
@@ -8,6 +8,7 @@ import { Card, Grid, Button, Breadcrumb } from "semantic-ui-react";
 import web3 from "../../ethereum/web3";
 import ContributeForm from "../../components/ContributeForm";
 import Link from "next/link";
+import CancelContribute from "../../components/cancelContribution";
 
 const getCampaignSummary = async (campaignAddress) => {
   const campaign = Campaign(campaignAddress);
@@ -101,7 +102,12 @@ const CampaignShow = () => {
             </div>
           </Grid.Column>
           <Grid.Column width={6}>
-            <ContributeForm campaignAddress={router.query.address} />
+            <Grid.Row>
+              <ContributeForm campaignAddress={router.query.address} />
+            </Grid.Row>
+            <Grid.Row>
+              <CancelContribute campaignAddress={router.query.address} />
+            </Grid.Row>
           </Grid.Column>
         </Grid.Row>
 
